@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DentSmiles Chatbot</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f1f6;
+      padding: 30px 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      color: #5961a7;
+    }
+    #chatbox {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      height: 400px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+    .message {
+      margin: 8px 0;
+      padding: 10px 14px;
+      border-radius: 12px;
+      max-width: 80%;
+      clear: both;
+    }
+    .user {
+      background: #98a8f8;
+      color: white;
+      float: right;
+      text-align: right;
+    }
+    .bot {
+      background: #e3e7f9;
+      color: #333;
+      float: left;
+      text-align: left;
+    }
+    #input-area {
+      display: flex;
+    }
+    #userInput {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px 0 0 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    #sendBtn {
+      padding: 12px 18px;
+      background: #5961a7;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 0 8px 8px 0;
+      transition: 0.3s;
+    }
+    #sendBtn:hover {
+      background: #434a8c;
+    }
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #5961a7;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>DentSmiles Dental Assistant</h2>
+
+  <div id="chatbox"></div>
+
+  <div id="input-area">
+    <input type="text" id="userInput" placeholder="Type your dental question..." />
+    <button id="sendBtn">Send</button>
+  </div>
+
+  <a href="index.html">← Back to Home</a>
+
+  <script>
+    const chatbox = document.getElementById('chatbox');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function appendMessage(text, sender) {
+      const msgDiv = document.createElement('div');
+      msgDiv.classList.add('message', sender);
+      msgDiv.textContent = text;
+      chatbox.appendChild(msgDiv);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    sendBtn.addEventListener('click', () => {
+      const text = userInput.value.trim();
+      if (!text) return;
+
+      appendMessage(text, 'user');
+      userInput.value = '';
+
+      // Fake bot response after 1 second
+      setTimeout(() => {
+        let botReply = "Thanks for your question! We'll get back to you soon.";
+        // Here is where you'd call the backend API for real AI response
+        appendMessage(botReply, 'bot');
+      }, 1000);
+    });
+
+    userInput.addEventListener('keypress', e => {
+      if (e.key === 'Enter') sendBtn.click();
+    });
+  </script>
+
+</body>
+</html>

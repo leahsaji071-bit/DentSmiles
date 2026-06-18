@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DentSmiles Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=1">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #1e293b; margin: 0; padding: 20px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { margin-bottom: 20px; color: #0f766e; }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    th { background: #0d9488; color: white; font-weight: 600; }
+    tr:hover { background: #f1f5f9; }
+    .status { padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; background: #dcfce7; color: #166534; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Appointment Dashboard</h1>
+    <p style="margin-top: -15px; margin-bottom: 25px; color: #64748b;">View all your recent bookings below.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Preferred Date</th>
+          <th>Preferred Time</th>
+          <th>Booked At</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="appt-body">
+        <tr><td colspan="6" style="text-align: center;">Loading appointments...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://qtqqhdyvhizenwdzihws.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_SsqaQ3koCDzPN-2jT2jq0Q_9DPE_maL';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    async function loadAppointments() {
+      const { data, error } = await supabaseClient
+        .from('appointments')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error(error);
+        document.getElementById('appt-body').innerHTML = `<tr><td colspan="6" style="color:red">Error loading data. Make sure you ran the SQL setup script in Supabase.</td></tr>`;
+        return;
+      }
+
+      const tbody = document.getElementById('appt-body');
+      tbody.innerHTML = '';
+      
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center;">No appointments yet!</td></tr>`;
+        return;
+      }
+
+      data.forEach(appt => {
+        const tr = document.createElement('tr');
+        const d = new Date(appt.created_at).toLocaleString();
+        tr.innerHTML = `
+          <td><strong>${appt.first_name} ${appt.last_name}</strong></td>
+          <td><a href="tel:${appt.phone}" style="color:#0d9488; font-weight: 500;">${appt.phone}</a></td>
+          <td>${appt.preferred_date || 'N/A'}</td>
+          <td>${appt.preferred_time || 'N/A'}</td>
+          <td style="color:#64748b; font-size:14px;">${d}</td>
+          <td><span class="status">New</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    loadAppointments();
+  </script>
+</body>
+</html>
