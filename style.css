@@ -268,7 +268,7 @@ img { max-width: 100%; display: block; }
   color: var(--teal-light); margin-bottom: 20px;
 }
 .footer-links p, .footer-links a {
-  display: block; font-size: 13.5px; color: rgba(255,255,255,0.6);
+  display: block; font-size: 13.5px; color: #ffffff;
   line-height: 2; transition: color 0.3s;
 }
 .footer-links a:hover { color: var(--white); }
