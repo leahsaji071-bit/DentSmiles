@@ -1,5 +1,0 @@
-/* 
-  All styles have been migrated to Tailwind CSS utility classes in index.html.
-  Any remaining custom CSS (like keyframes and specific component logic) has been moved into the <style> block of index.html for simplicity.
-  You can use this file for any future custom CSS that you don't want to use Tailwind for.
-*/

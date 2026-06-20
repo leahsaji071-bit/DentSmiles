@@ -10,32 +10,40 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #1e293b; margin: 0; padding: 20px; }
     .container { max-width: 1000px; margin: 0 auto; }
     h1 { margin-bottom: 20px; color: #0f766e; }
-    table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); background: white; }
+    table { width: 100%; border-collapse: collapse; background: white; }
+    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
     th { background: #0d9488; color: white; font-weight: 600; }
     tr:hover { background: #f1f5f9; }
     .status { padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; background: #dcfce7; color: #166534; }
+    @media (max-width: 576px) {
+      body { padding: 10px; }
+      h1 { font-size: 24px; }
+      th, td { padding: 8px 10px; font-size: 13px; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Appointment Dashboard</h1>
     <p style="margin-top: -15px; margin-bottom: 25px; color: #64748b;">View all your recent bookings below.</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Preferred Date</th>
-          <th>Preferred Time</th>
-          <th>Booked At</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody id="appt-body">
-        <tr><td colspan="6" style="text-align: center;">Loading appointments...</td></tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Preferred Date</th>
+            <th>Preferred Time</th>
+            <th>Booked At</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="appt-body">
+          <tr><td colspan="6" style="text-align: center;">Loading appointments...</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script>
