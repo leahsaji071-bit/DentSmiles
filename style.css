@@ -497,19 +497,19 @@ img { max-width: 100%; display: block; }
   right: 24px;
   width: 56px;
   height: 56px;
-  background-color: #25d366;
+  background-color: var(--teal-deep);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), 0 0 10px rgba(37, 211, 102, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), 0 0 10px rgba(19, 78, 74, 0.3);
   z-index: 999;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 .whatsapp-float:hover {
-  background-color: #20ba5a;
+  background-color: var(--teal-dark);
   transform: scale(1.08) translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 15px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 15px rgba(15, 118, 110, 0.5);
 }
 .whatsapp-icon {
   width: 32px;
