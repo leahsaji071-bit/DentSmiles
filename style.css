@@ -494,7 +494,7 @@ img { max-width: 100%; display: block; }
 .whatsapp-float {
   position: fixed;
   bottom: 24px;
-  left: 24px;
+  right: 24px;
   width: 56px;
   height: 56px;
   background-color: #25d366;
