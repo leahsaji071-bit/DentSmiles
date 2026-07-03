@@ -476,6 +476,35 @@
         ]);
 
       if (error) throw error;
+
+      // Web3Forms email notification (optional, non-blocking)
+      const WEB3FORMS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY_HERE'; // Replace with your Web3Forms access key
+      if (WEB3FORMS_KEY && WEB3FORMS_KEY !== 'YOUR_WEB3FORMS_ACCESS_KEY_HERE') {
+        try {
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              access_key: WEB3FORMS_KEY,
+              subject: `New Appointment Booking: ${firstName} ${lastName}`,
+              from_name: 'DentSmiles Website',
+              message: `You have received a new booking request!
+
+Name: ${firstName} ${lastName}
+Phone: ${phone}
+Preferred Date: ${date || 'N/A'}
+Preferred Time: ${time || 'N/A'}
+
+View all bookings in the Admin Dashboard: https://www.dentsmiles.in/admin.html`
+            })
+          });
+        } catch (e) {
+          console.warn('Web3Forms notification failed to send:', e);
+        }
+      }
       
       closeModal();
       // Show quick toast
