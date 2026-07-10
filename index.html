@@ -398,11 +398,11 @@
     currentSlide += n;
     showSlide(currentSlide);
   }
-  // Auto slide every 10 seconds
+  // Auto slide every 5 seconds
   if (slides.length > 0) {
     setInterval(() => {
       moveSlide(1);
-    }, 10000);
+    }, 5000);
   }
 
   // Intersection Observer for scroll animations
