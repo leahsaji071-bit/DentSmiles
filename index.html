@@ -112,16 +112,24 @@
 <!-- SLIDER SECTION -->
 <section id="slider">
   <div class="slide active">
-    <img src="pediatric-dentistry.png" onerror="this.onerror=null; this.src='pediatric-dentistry.jpg';" alt="Paediatric Dentistry">
-    <div class="slide-caption">Paediatric Dentistry</div>
+    <img src="before-after-1.jpg" alt="Smile Transformation Case 1">
+    <div class="slide-caption">Smile Transformation: Case 1</div>
   </div>
   <div class="slide">
-    <img src="braces-comparison.jpg" onerror="this.onerror=null; this.src='braces-comparison.jpeg';" alt="Invisalign vs Braces">
-    <div class="slide-caption">Personalized Care by Expert Dentists</div>
+    <img src="before-after-2.jpg" alt="Smile Transformation Case 2">
+    <div class="slide-caption">Smile Transformation: Case 2</div>
   </div>
   <div class="slide">
-    <img src="advanced-tech-sharp.png" onerror="this.onerror=null; this.src='advanced-tech-sharp.jpg';" alt="Advanced Equipment">
-    <div class="slide-caption">Cutting‑Edge Dental Tech</div>
+    <img src="before-after-3.jpg" alt="Smile Transformation Case 3">
+    <div class="slide-caption">Smile Transformation: Case 3</div>
+  </div>
+  <div class="slide">
+    <img src="before-after-4.jpg" alt="Smile Transformation Case 4">
+    <div class="slide-caption">Smile Transformation: Case 4</div>
+  </div>
+  <div class="slide">
+    <img src="before-after-5.jpg" alt="Smile Transformation Case 5">
+    <div class="slide-caption">Smile Transformation: Case 5</div>
   </div>
   
   <button class="slider-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
@@ -390,11 +398,11 @@
     currentSlide += n;
     showSlide(currentSlide);
   }
-  // Auto slide every 5 seconds
+  // Auto slide every 10 seconds
   if (slides.length > 0) {
     setInterval(() => {
       moveSlide(1);
-    }, 5000);
+    }, 10000);
   }
 
   // Intersection Observer for scroll animations
